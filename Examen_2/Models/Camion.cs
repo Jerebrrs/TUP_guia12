@@ -1,5 +1,7 @@
 ﻿
 
+using Microsoft.Win32;
+
 namespace Examen_2.Models
 {
     [Serializable]
@@ -66,7 +68,7 @@ namespace Examen_2.Models
         public override string ToString()
         {
             string carga = string.Join(", ", VerCarga()); // Une todos los autos en una sola línea
-            return $"{fecha.ToShortDateString()} - Capacidad: {capacidad} - Carga: [{carga}]";
+            return $"{NroRegistro}_{fecha:yyyyMMdd}";
         }
 
     }

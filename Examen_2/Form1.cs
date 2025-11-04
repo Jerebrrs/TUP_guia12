@@ -9,17 +9,19 @@ namespace Examen_2
             InitializeComponent();
         }
         Sistema sistema = new Sistema();
+        int nro = 1;
         private void button2_Click(object sender, EventArgs e)
         {
 
             try
             {
-                int n = 0;
+                int nroAuto = 1;
                 Auto auto = lbAutos.SelectedItem as Auto;
 
                 if (auto != null)
                 {
-                    sistema.CargarCamion(n, auto);
+                    sistema.CargarCamion(nro, auto);
+                    nroAuto++;
                     lbAutos.Items.Remove(auto);
                     lbAutos.SelectedItem = null;
                     MessageBox.Show($"Cantidad en camión: {sistema.camion.CantidadDeVehiculos()}");
@@ -51,8 +53,9 @@ namespace Examen_2
                 }
                 int capacidad = Convert.ToInt32(tbcapacidad.Text);
 
-                int nroRegistro = sistema.GenerarCamion(fecha, capacidad);
-                MessageBox.Show($"Se creo el camion con el nro:{nroRegistro}");
+                nro = sistema.GenerarCamion(fecha, capacidad);
+
+                MessageBox.Show($"Se creo el camion con el nro:{nro}");
             }
             catch (Exception ex)
             {
@@ -84,24 +87,25 @@ namespace Examen_2
         {
             SaveFileDialog sfd = new SaveFileDialog();
             sfd.Filter = "Archivos CSV|*.csv";
-
+            sfd.FileName = $"{sistema.camion.ToString()}.csv";
             FileStream fs = null;
             StreamWriter sw = null;
             try
             {
-               
+
                 if (sfd.ShowDialog() == DialogResult.OK)
                 {
                     string path = sfd.FileName;
                     fs = new FileStream(path, FileMode.OpenOrCreate, FileAccess.Write);
                     sw = new StreamWriter(fs);
                     //string[] autos = sistema.camion.VerCarga();
-                    if (sistema.camion == null)
+                    string[] autos = sistema.camion.VerCarga();
+                    foreach (string auto in autos)
                     {
-                        MessageBox.Show("No hay ningún camión cargado en el sistema.");
-                        return;
+                        sw.WriteLine(auto);
                     }
-                    sw.WriteLine(sistema.camion.ToString());
+
+                    MessageBox.Show("Archivo CSV generado correctamente.");
                 }
             }
             catch (Exception ex)
@@ -112,11 +116,72 @@ namespace Examen_2
             {
                 if (sw != null)
                 {
-                    sw.Close(); 
+                    sw.Close();
                 }
             }
 
 
+        }
+
+        private void btnRecibirCamion_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            FileStream fs = null;
+            StreamReader sr = null;
+            try
+            {
+
+                if (ofd.ShowDialog() == DialogResult.OK)
+                {
+                    string path = ofd.FileName;
+                    fs = new FileStream(path, FileMode.Open, FileAccess.Read);
+                    sr = new StreamReader(fs);
+
+                    while (!sr.EndOfStream)
+                    {
+                        string linia = sr.ReadLine();
+                        string[] linias = linia.Split(";");
+
+                        Auto auto = new Auto(Convert.ToInt32(linias[0]), linias[1]);
+                        lbrecibidos.Items.Add(auto);
+
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                if (sr != null)
+                {
+                    sr.Close();
+                }
+            }
+
+        }
+
+        private void btnDescargar_Click(object sender, EventArgs e)
+        {
+            Auto descargado = sistema.DescarCamion(nro);
+            lbAutos.Items.Add(descargado);
+        }
+
+        private void btnDescRecibidos_Click(object sender, EventArgs e)
+        {
+            if (nro>=0)
+            {
+                Auto auto = sistema.DescarCamion(nro);
+                MessageBox.Show(auto.ToString());
+                while (auto !=null)
+                {
+                    lbAutos.Items.Add(auto);
+                    lbrecibidos.Items.Remove(auto);
+                    auto = sistema.DescarCamion(nro);
+                }
+            }
         }
     }
 }

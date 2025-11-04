@@ -99,6 +99,7 @@
             btnDescargar.TabIndex = 5;
             btnDescargar.Text = "Descargar";
             btnDescargar.UseVisualStyleBackColor = true;
+            btnDescargar.Click += btnDescargar_Click;
             // 
             // btnCargarCamion
             // 
@@ -167,6 +168,7 @@
             btnDescRecibidos.TabIndex = 5;
             btnDescRecibidos.Text = "Descargar";
             btnDescRecibidos.UseVisualStyleBackColor = true;
+            btnDescRecibidos.Click += btnDescRecibidos_Click;
             // 
             // btnRecibirCamion
             // 
@@ -176,6 +178,7 @@
             btnRecibirCamion.TabIndex = 4;
             btnRecibirCamion.Text = "Recibir Camion";
             btnRecibirCamion.UseVisualStyleBackColor = true;
+            btnRecibirCamion.Click += btnRecibirCamion_Click;
             // 
             // lbrecibidos
             // 

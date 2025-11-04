@@ -26,7 +26,7 @@ namespace Examen_2.Models
         }
         public override string ToString()
         {
-            return $@"{Precio};{modelo}";
+            return $@"{numeroRegistro};{modelo}";
         }
     }
 }

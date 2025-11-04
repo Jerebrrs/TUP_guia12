@@ -18,17 +18,19 @@
 
         public Auto DescarCamion(int nroOrden)
         {
-            Auto auto = null;
+            Camion camion =VerCamion(nroOrden);
+            Auto auto=camion.RetirarVehiculo();
             return auto;
         }
 
         public int GenerarCamion(DateTime fecha, int capacidad)
         {
             Camion camion = new Camion(fecha, capacidad);
-            this.camion = camion;
-            camion.NroRegistro = NroOrden++;
             listaCamiones.Add(camion);
-            return NroOrden;
+            this.camion = camion;
+            camion.NroRegistro = NroOrden;
+         
+            return camion.NroRegistro;
         }
 
         public void CargarCamion(int nroOrden, Auto auto)
