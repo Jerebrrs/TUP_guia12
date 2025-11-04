@@ -61,5 +61,15 @@ namespace Guia_12
         {
             //este examen es horrible.
         }
+
+        private void btnAtenderDenun_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnImportarVehiculos_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -119,8 +119,6 @@ namespace Examen_2
                     sw.Close();
                 }
             }
-
-
         }
 
         private void btnRecibirCamion_Click(object sender, EventArgs e)

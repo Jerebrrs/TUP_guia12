@@ -167,6 +167,7 @@
             btnImportarVehiculos.TabIndex = 13;
             btnImportarVehiculos.Text = "Importar Vehiculos";
             btnImportarVehiculos.UseVisualStyleBackColor = true;
+            btnImportarVehiculos.Click += btnImportarVehiculos_Click;
             // 
             // btnAtenderCliente
             // 
@@ -186,6 +187,7 @@
             btnAtenderDenun.TabIndex = 15;
             btnAtenderDenun.Text = "Atender Denuncias";
             btnAtenderDenun.UseVisualStyleBackColor = true;
+            btnAtenderDenun.Click += btnAtenderDenun_Click;
             // 
             // Form1
             // 
