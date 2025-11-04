@@ -26,7 +26,7 @@ namespace Parcial_3
         {
             try
             {
-                string destino = cbDestinos.SelectedItem as string;
+                string destino = Convert.ToString(cbDestinos.SelectedItem);
                 string[] transportePatente = (cbTransporte.SelectedItem as string).Split(";");
 
                 string transporte = transportePatente[0];
@@ -121,9 +121,6 @@ namespace Parcial_3
 
                     }
                 }
-
-
-
             }
             catch (Exception ex)
             {
@@ -161,11 +158,7 @@ namespace Parcial_3
                         sw.WriteLine(item.ToString());
                     }
 
-
                 }
-
-
-
             }
             catch (Exception ex)
             {
@@ -173,7 +166,6 @@ namespace Parcial_3
             }
             finally
             {
-             
                 if (sw != null)
                 {
                     sw.Close();

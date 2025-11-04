@@ -5,9 +5,8 @@ namespace Parcial_3.Models
     [Serializable]
     public class Avion : Transporte
     {
-        public string Patente { get; set; }
 
-        public Avion(string patente, string destino, double precio) : base(destino, precio)
+        public Avion(string patente, string destino, double precio) : base(destino, precio,patente)
         {
             this.Patente = patente;
         }

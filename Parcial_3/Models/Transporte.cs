@@ -5,11 +5,13 @@
     {
         public string Destino { get; set; }
         public double PrecioBase { get; set; }
+        public string Patente { get; set; }
 
-        public Transporte(string destino,double precio)
+        public Transporte(string destino,double precio,string patente)
         {
             this.PrecioBase = precio;
             this.Destino = destino;
+            this.Patente = patente;
         }
         virtual public string ToString()
         {

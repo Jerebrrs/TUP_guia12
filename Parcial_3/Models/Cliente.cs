@@ -12,24 +12,22 @@ namespace Parcial_3.Models
 
         public Cliente(string nombre, string cuit, int telefono,string ntarjeta)                                                                             
         {
-            //if (cuit.Length == 11)
-            //{
-            //    this.Cuit = Convert.ToInt64(cuit);
-            //}
-            //else
-            //{
-            //    throw new DNIExepcion("El Cuit debe tener 11 Caracteres.");
-            //}
-            //if (ntarjeta.Length == 16)
-            //{
-            //    this.nTarjeta = Convert.ToInt64(ntarjeta);
-            //}
-            //else
-            //{
-            //    throw new TarjetaExeption("La tarjeta debe tener 16 Caracteres.");
-            //}
-            this.nTarjeta = Convert.ToInt64(ntarjeta);
-            this.Cuit = Convert.ToInt64(cuit);
+            if (cuit.Length == 11)
+            {
+                this.Cuit = Convert.ToInt64(cuit);
+            }
+            else
+            {
+                throw new DNIExepcion("El Cuit debe tener 11 Caracteres.");
+            }
+            if (ntarjeta.Length == 16)
+            {
+                this.nTarjeta = Convert.ToInt64(ntarjeta);
+            }
+            else
+            {
+                throw new TarjetaExeption("La tarjeta debe tener 16 Caracteres.");
+            }
             this.Nombre = nombre;
             this.telefono=telefono;
            
