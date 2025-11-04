@@ -7,9 +7,8 @@ namespace Examen_1.Models
         protected int nroOrden { get; set; }
         private DateTime fechaHora { get; set; }
 
-        protected Ticket(int nr)
+        public Ticket()
         {
-            this.nroOrden = nr;
             this.fechaHora= DateTime.Now;
         }
         public int VerNumero()
@@ -19,6 +18,11 @@ namespace Examen_1.Models
         public DateTime VerFechaHora()
         {
             return fechaHora;
+        }
+
+        override public string ToString()
+        {
+            return $"TCK({VerNumero()});{VerFechaHora():d/M/yyyy}";
         }
     }
 }

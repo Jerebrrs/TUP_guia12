@@ -1,7 +1,8 @@
 ﻿
 namespace Examen_1.Models
 {
-    public class Vehiculo
+    [Serializable]
+    public class Vehiculo : IComparable<Vehiculo>
     {
         private string nroPatente { get;set; }
         private Cliente dueño { get; set; }
@@ -32,6 +33,20 @@ namespace Examen_1.Models
                 return nroPatente;
             }
             return null;
+        }
+
+        public override string ToString()
+        {
+            return $"{nroPatente}";
+        }
+
+        public int CompareTo(Vehiculo? other)
+        {
+            if (other !=null)
+            {
+                return nroPatente.CompareTo(other.nroPatente);
+            }
+            return -1;
         }
     }
 }
